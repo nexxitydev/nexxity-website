@@ -355,3 +355,127 @@ Js
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll(); // Init on load
 })();
+Js
+/* ============================================================
+   SECTION 4 — FEATURE STACKING LOGIC
+============================================================ */
+(function initFeatureStack() {
+  const stackWrapper = document.querySelector('.features-scroll-wrapper');
+  const cards = document.querySelectorAll('.feature-card');
+  
+  if (!stackWrapper || !cards.length) return;
+
+  const updateStack = () => {
+    const wrapperRect = stackWrapper.getBoundingClientRect();
+    const progress = Math.abs(wrapperRect.top) / (wrapperRect.height - window.innerHeight);
+    const totalCards = cards.length;
+    
+    cards.forEach((card, index) => {
+      const cardProgress = progress * totalCards;
+      const isActive = index <= cardProgress;
+      
+      if (index < Math.floor(cardProgress)) {
+        card.classList.add('is-stacked');
+        card.classList.remove('is-active');
+        // Progressive scaling down for depth
+        const depth = Math.floor(cardProgress) - index;
+        const scale = 1 - (depth * 0.03);
+        card.style.transform = `scale(${scale}) translateY(-${depth * 20}px)`;
+      } else if (index === Math.floor(cardProgress)) {
+        card.classList.add('is-active');
+        card.classList.remove('is-stacked');
+        card.style.transform = `scale(1) translateY(0)`;
+      } else {
+        card.classList.remove('is-active', 'is-stacked');
+        card.style.transform = `translateY(100vh)`; // Hide cards below
+      }
+    });
+  };
+
+  window.addEventListener('scroll', updateStack);
+  
+  // Click squeeze effect
+  cards.forEach(card => {
+    card.addEventListener('mousedown', () => card.classList.add('is-clicked'));
+    card.addEventListener('mouseup', () => card.classList.remove('is-clicked'));
+  });
+})();
+
+/* ============================================================
+   SECTION 5 — TIMELINE REVEAL LOGIC
+============================================================ */
+(function initTimelineReveal() {
+  const steps = document.querySelectorAll('.timeline-step');
+  
+  const observerOptions = {
+    threshold: 0.3
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        const card = entry.target.querySelector('.step-content-card');
+        const connector = entry.target.querySelector('.node-connector');
+        
+        setTimeout(() => {
+          if(card) card.style.opacity = "1";
+          if(card) card.style.transform = "translateY(0)";
+          if(connector) connector.style.width = "60px";
+        }, index * 150);
+      }
+    });
+  }, observerOptions);
+
+  steps.forEach(step => observer.observe(step));
+})();
+Js
+/* ============================================================
+   REVEAL ON SCROLL OBSERVER
+============================================================ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+/* ============================================================
+   SECTION 7 — TEAM SCROLL LOGIC
+============================================================ */
+(function initTeamScroll() {
+  const panels = document.querySelectorAll('.leader-panel');
+  
+  const teamObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active from all, add to this
+        panels.forEach(p => p.classList.remove('is-visible'));
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { 
+    threshold: 0.5 // Switch when panel is half visible
+  });
+
+  panels.forEach(panel => teamObserver.observe(panel));
+
+  // Exit flip logic (Optional enhancement)
+  window.addEventListener('scroll', () => {
+    panels.forEach(panel => {
+      const rect = panel.getBoundingClientRect();
+      const avatar = panel.querySelector('.avatar-frame');
+      
+      // If panel is moving out towards the top
+      if (rect.top < 0 && rect.bottom > 0) {
+        const progress = Math.abs(rect.top) / rect.height;
+        if (avatar) {
+          avatar.style.transform = `perspective(1000px) rotateY(${-90 * progress}deg)`;
+          avatar.style.opacity = 1 - progress;
+        }
+      }
+    });
+  });
+})();
