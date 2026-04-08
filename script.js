@@ -479,3 +479,77 @@ document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.obse
     });
   });
 })();
+Js
+// --- Custom Cursor Logic ---
+const cursor = document.getElementById('custom-cursor');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a, button, .project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2)'; cursor.style.opacity = '0.6'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursor.style.opacity = '1'; });
+});
+
+// --- Page Loader ---
+window.addEventListener('load', () => {
+  const loader = document.getElementById('page-loader');
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display = 'none', 600);
+  }, 1000);
+});
+
+// --- Section 8: Labs 3D Carousel Logic ---
+let currentRotate = 0;
+const track = document.querySelector('.carousel-3d-track');
+const cards = document.querySelectorAll('.project-card');
+
+function rotateCarousel(direction) {
+  currentRotate += direction === 'next' ? -90 : 90;
+  track.style.transform = `rotateY(${currentRotate}deg)`;
+  
+  // Update active card class logic based on rotation
+  const index = Math.abs(currentRotate / 90) % cards.length;
+  cards.forEach((c, i) => {
+    c.classList.toggle('active', i === index);
+  });
+}
+
+document.querySelector('.next').onclick = () => rotateCarousel('next');
+document.querySelector('.prev').onclick = () => rotateCarousel('prev');
+
+// --- Section 8: Three.js Neural Mesh Background ---
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById('labs-canvas-container').appendChild(renderer.domElement);
+
+const geometry = new THREE.IcosahedronGeometry(2, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00D1FF, wireframe: true, transparent: true, opacity: 0.1 });
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+
+camera.position.z = 5;
+
+function animateLabs() {
+  requestAnimationFrame(animateLabs);
+  sphere.rotation.y += 0.002;
+  sphere.rotation.x += 0.001;
+  renderer.render(scene, camera);
+}
+animateLabs();
+
+// --- Footer Intersection Observer ---
+const footerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.reveal-footer').forEach((col, i) => {
+        setTimeout(() => col.classList.add('is-visible'), i * 150);
+      });
+    }
+  });
+}, { threshold: 0.1 });
+footerObserver.observe(document.getElementById('footer'));
