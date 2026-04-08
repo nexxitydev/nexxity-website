@@ -315,3 +315,43 @@ const $$ = (selector, context = document) => [...context.querySelectorAll(select
 /* ============================================================
    FUTURE SECTION SCRIPTS WILL BE APPENDED BELOW THIS BLOCK
 ============================================================ */
+Js 
+/* ============================================================
+   SECTION 3 — PROBLEM STACK LOGIC
+============================================================ */
+(function initProblemCrusher() {
+  const cards = $$('.crusher-card');
+  if (!cards.length) return;
+
+  const handleScroll = () => {
+    const triggerPoint = window.innerHeight * 0.3;
+
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      
+      // Determine if card is active (near top of viewport)
+      if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+
+      // Shrink logic for previous cards
+      if (rect.top < triggerPoint - 50) {
+        card.classList.add('is-past');
+        // Progressive scaling: each card deeper in stack is smaller
+        const depth = cards.length - index;
+        const scaleValue = 1 - (0.03 * (cards.filter(c => c.classList.contains('is-past')).length - index));
+        if(card.classList.contains('is-past')) {
+           card.style.transform = `scale(${Math.max(0.85, scaleValue)}) translateY(${-20 * index}px)`;
+        }
+      } else {
+        card.classList.remove('is-past');
+        card.style.transform = `scale(1) translateY(0)`;
+      }
+    });
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Init on load
+})();
