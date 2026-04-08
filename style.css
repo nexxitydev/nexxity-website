@@ -1005,3 +1005,315 @@ Css
   .ring-3 { width: 280px; height: 280px; }
   .planet-node { width: 50px; height: 50px; }
 }
+Css
+/* ============================================================
+   SHARED UTILITIES
+============================================================ */
+.section-blend-top {
+  position: absolute;
+  top: 0; width: 100%; height: 120px;
+  background: linear-gradient(to top, transparent, #050505);
+  z-index: 2;
+}
+
+.section-fade-bottom {
+  position: absolute;
+  bottom: 0; width: 100%; height: 120px;
+  background: linear-gradient(to bottom, transparent, #050505);
+}
+
+.gradient-text {
+  background: linear-gradient(144deg, #FFFFFF 30%, rgba(255,255,255,0.3) 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   SECTION 4 — FEATURE STACK STYLES
+============================================================ */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.features-section {
+  position: relative;
+  background: #050505;
+  padding: 100px 0 140px;
+  overflow: hidden;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+.features-heading {
+  font-size: 52px;
+  font-weight: 700;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.18;
+}
+
+.features-subheading {
+  font-size: 17px;
+  color: #A1A1A1;
+  max-width: 580px;
+  margin: 18px auto 0;
+  line-height: 1.75;
+}
+
+.features-scroll-wrapper {
+  position: relative;
+  min-height: 500vh;
+}
+
+.features-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card {
+  position: absolute;
+  width: 900px;
+  max-width: 92vw;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 56px 60px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+  transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center bottom;
+}
+
+/* Active State & Border Trace */
+.feature-card.is-active {
+  border-color: rgba(0, 209, 255, 0.45);
+}
+
+.feature-card.is-active::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  padding: 1.5px;
+  border-radius: 24px;
+  background: conic-gradient(from var(--angle), transparent 70%, #00D1FF 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: rotateBorder 3s linear infinite;
+}
+
+@keyframes rotateBorder {
+  to { --angle: 360deg; }
+}
+
+.feature-card.is-stacked {
+  transform: scale(0.96);
+  filter: brightness(0.6);
+}
+
+.feature-card.is-clicked {
+  transform: scale(0.98);
+}
+
+/* Card Content Details */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-num {
+  font-size: 13px;
+  color: #00D1FF;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.feature-tag {
+  background: rgba(0, 209, 255, 0.08);
+  color: #00D1FF;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 209, 255, 0.2);
+}
+
+.feature-icon-box {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: rgba(0, 209, 255, 0.07);
+  border: 1px solid rgba(0, 209, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 36px;
+  color: #FFF;
+}
+
+.feature-card.is-active .feature-icon-box {
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.25);
+}
+
+.feature-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 28px;
+}
+
+.feature-body {
+  font-size: 16px;
+  color: #A1A1A1;
+  line-height: 1.8;
+  margin-top: 16px;
+  max-width: 680px;
+}
+
+.explore-btn {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 9px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.explore-btn:hover {
+  border-color: #00D1FF;
+  color: #00D1FF;
+}
+
+/* ============================================================
+   SECTION 5 — ARCHITECTURE STYLES
+============================================================ */
+.architecture-section {
+  position: relative;
+  background: #050505;
+  padding: 100px 0 140px;
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.center-line {
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(0,209,255,0.4) 15%, rgba(0,209,255,0.4) 85%, transparent);
+  transform: translateX(-50%);
+}
+
+.light-particle {
+  width: 8px; height: 8px;
+  background: #00D1FF;
+  border-radius: 50%;
+  box-shadow: 0 0 16px 4px rgba(0,209,255,0.7);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: particleFlow 4s linear infinite;
+}
+
+@keyframes particleFlow {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.timeline-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 80px;
+  width: 100%;
+}
+
+.left-step { justify-content: flex-end; padding-right: 50%; }
+.right-step { justify-content: flex-start; padding-left: 50%; }
+
+.node-circle {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 209, 255, 0.25);
+  display: flex;
+  align-items: center; justify-content: center;
+  color: #00D1FF;
+  font-weight: 700;
+  font-size: 18px;
+  backdrop-filter: blur(15px);
+  z-index: 2;
+  transition: 0.3s ease;
+}
+
+.node-connector {
+  width: 0; /* Animate this to 60px */
+  height: 1px;
+  background: rgba(0, 209, 255, 0.3);
+}
+
+.step-content-card {
+  position: relative;
+  max-width: 420px;
+  padding: 36px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  opacity: 0; transform: translateY(30px);
+}
+
+/* Tooltip */
+.step-content-card::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(0, 209, 255, 0.12);
+  border: 1px solid rgba(0, 209, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: #00D1FF;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+.step-content-card:hover::after {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
+.tech-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.pill {
+  background: rgba(0, 209, 255, 0.08);
+  border: 1px solid rgba(0, 209, 255, 0.2);
+  color: #00D1FF; font-size: 11px; padding: 3px 12px; border-radius: 999px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .center-line { left: 24px; }
+  .left-step, .right-step { padding: 0 0 0 64px; justify-content: flex-start; }
+  .node-circle { position: absolute; left: 0; width: 48px; height: 48px; font-size: 14px; }
+  .node-connector { display: none; }
+  .feature-card { padding: 30px 24px; }
+  .feature-title { font-size: 22px; }
+}
