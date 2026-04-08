@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexxity — AI-Powered Revenue Operating System for global businesses." />
+  <title>Nexxity — AI Revenue Operating System</title>
 
+  <!-- General Sans Font -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link
+    href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1A — NAVIGATION BAR
+  ============================================================ -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner">
+
+      <!-- Logo -->
+      <a href="#" class="navbar__logo" aria-label="Nexxity Home">
+        NEXXITY<span class="navbar__logo-dot" aria-hidden="true"></span>
+      </a>
+
+      <!-- Center Nav Links (Desktop) -->
+      <nav class="navbar__links" role="navigation" aria-label="Main navigation">
+        <a href="#solutions" class="navbar__link">
+          Solutions
+          <svg class="navbar__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#how-it-works" class="navbar__link">
+          How It Works
+          <svg class="navbar__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#case-studies" class="navbar__link">
+          Case Studies
+          <svg class="navbar__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#about" class="navbar__link">
+          About Us
+          <svg class="navbar__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Right CTA -->
+      <a href="#contact" class="navbar__cta" aria-label="Build Your AI Workforce">
+        Build Your AI Workforce
+      </a>
+
+      <!-- Hamburger (Mobile) -->
+      <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Full-Screen Overlay Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <button class="mobile-menu__close" id="mobileCloseBtn" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <nav class="mobile-menu__links" role="navigation" aria-label="Mobile navigation">
+      <a href="#solutions" class="mobile-menu__link">Solutions</a>
+      <a href="#how-it-works" class="mobile-menu__link">How It Works</a>
+      <a href="#case-studies" class="mobile-menu__link">Case Studies</a>
+      <a href="#about" class="mobile-menu__link">About Us</a>
+      <a href="#contact" class="mobile-menu__link mobile-menu__link--cta">Build Your AI Workforce</a>
+    </nav>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1B — HERO CONTENT
+  ============================================================ -->
+  <section class="hero" id="hero" aria-label="Hero section">
+
+    <!-- Background Video -->
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+      poster=""
+    >
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260217_030345_246c0224-10a4-422c-b324-070b7c0eceda.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="hero__overlay" aria-hidden="true"></div>
+
+    <!-- Floating Particles -->
+    <div class="hero__particles" aria-hidden="true">
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero__content">
+
+      <!-- Badge Pill -->
+      <div class="hero__badge animate-hero" style="--delay: 0s">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        <span>AI-Powered · Revenue Operating System</span>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="hero__heading animate-hero shimmer-text" style="--delay: 0.15s">
+        India's Next Revolution Isn't Noise —<br />
+        It's <span class="hero__heading-accent">Intelligence.</span>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="hero__subheading animate-hero" style="--delay: 0.3s">
+        We are building an AI-powered Revenue Operating System designed to automate how businesses
+        generate, manage, and convert opportunities globally. Replace manual processes with
+        intelligent, autonomous systems.
+      </p>
+
+      <!-- CTA Row -->
+      <div class="hero__cta-row animate-hero" style="--delay: 0.45s">
+        <!-- Primary CTA -->
+        <a href="#contact" class="btn btn--primary">
+          Build Your AI Workforce
+        </a>
+        <!-- Secondary CTA -->
+        <a href="#demo" class="btn btn--ghost">
+          <svg class="btn__icon" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+            <path d="M3 2L11 6.5L3 11V2Z" fill="currentColor"/>
+          </svg>
+          Watch Demo →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M4 7L10 13L16 7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Section Fade-Out Into Next Section -->
+    <div class="hero__fade-out" aria-hidden="true"></div>
+
+  </section>
+
+  <!-- ============================================================
+       FUTURE SECTIONS WILL BE PASTED BELOW THIS COMMENT
+  ============================================================ -->
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
