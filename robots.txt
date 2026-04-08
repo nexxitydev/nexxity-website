@@ -1,0 +1,14 @@
+# Nexxity AI Robots.txt
+User-agent: *
+Allow: /
+
+# Isse Google ko tere images aur assets dikhne chahiye
+Allow: /assets/images/
+Allow: /assets/css/
+Allow: /assets/js/
+
+# Agar koi admin ya private folder hai toh yahan Disallow kar sakte ho
+Disallow: /private/
+
+# Google ko sitemap ka rasta dikhao
+Sitemap: https://www.nexxity.ai/sitemap.xml
