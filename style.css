@@ -687,3 +687,321 @@ img, video {
     letter-spacing: 2px;
   }
 }
+Css
+/* ============================================================
+   SECTION 2 — ORBIT SYSTEM STYLES
+============================================================ */
+.orbit-section {
+  position: relative;
+  min-height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 100px 24px 140px;
+  overflow: hidden;
+}
+
+.section-label-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-line {
+  width: 2px;
+  height: 40px;
+  background: var(--color-accent);
+}
+
+.section-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.orbit-heading {
+  font-size: 42px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 80px;
+  line-height: 1.2;
+}
+
+.orbit-container {
+  position: relative;
+  width: 720px;
+  height: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Central Sun ── */
+.orbit-sun {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 209, 255, 0.35);
+  background: radial-gradient(circle, rgba(0, 209, 255, 0.12) 0%, #050505 100%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sunPulse 3s ease-in-out infinite alternate;
+}
+
+.sun-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sun-text {
+  font-size: 10px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+@keyframes sunPulse {
+  from { box-shadow: 0 0 30px rgba(0, 209, 255, 0.2); }
+  to { box-shadow: 0 0 60px rgba(0, 209, 255, 0.5); }
+}
+
+/* ── Rings & Planets ── */
+.orbit-ring {
+  position: absolute;
+  border: 0.75px solid rgba(161, 161, 161, 0.18);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring-1 { width: 340px; height: 340px; animation: orbitRotate 30s linear infinite; }
+.ring-2 { width: 520px; height: 520px; animation: orbitRotate 60s linear infinite; }
+.ring-3 { width: 720px; height: 720px; animation: orbitRotate 120s linear infinite; }
+
+.planet-node {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.planet-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+/* Specific Node Placements */
+.node-r1-1 { top: -45px; left: calc(50% - 45px); }
+.node-r1-2 { bottom: -45px; left: calc(50% - 45px); }
+.node-r2-1 { right: -45px; top: calc(50% - 45px); }
+.node-r2-2 { left: -45px; top: calc(50% - 45px); }
+.node-r3-1 { top: -45px; left: calc(50% - 45px); }
+.node-r3-2 { bottom: -45px; left: calc(50% - 45px); }
+
+/* Counter-Rotation Logic */
+.ring-1 .planet-inner { animation: counterRotate 30s linear infinite; }
+.ring-2 .planet-inner { animation: counterRotate 60s linear infinite; }
+.ring-3 .planet-inner { animation: counterRotate 120s linear infinite; }
+
+.planet-node:hover {
+  border-color: rgba(0, 209, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.planet-icon { width: 24px; height: 24px; color: #FFF; }
+.planet-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #FFFFFF;
+  max-width: 80px;
+  letter-spacing: 0.3px;
+}
+
+@keyframes orbitRotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes counterRotate { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+.orbit-fade-out {
+  position: absolute;
+  bottom: 0; width: 100%; height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+}
+
+/* ============================================================
+   SECTION 3 — PROBLEM CRUSHER STYLES
+============================================================ */
+.problem-section {
+  background: var(--color-bg);
+  padding-top: 120px;
+}
+
+.problem-scroll-wrapper {
+  min-height: 500vh; /* Controlled by JS for scroll distance */
+  position: relative;
+}
+
+.problem-header {
+  text-align: center;
+  margin-bottom: 80px;
+  padding: 0 24px;
+}
+
+.problem-heading {
+  font-size: 52px;
+  font-weight: 700;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.2;
+}
+
+.problem-subheading {
+  font-size: 17px;
+  color: var(--color-muted);
+  max-width: 600px;
+  margin: 20px auto 0;
+  line-height: 1.7;
+}
+
+.crusher-stack {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 60px 120px rgba(0,0,0,0.8));
+}
+
+.crusher-card {
+  position: sticky;
+  top: 15vh;
+  width: 800px;
+  max-width: 92vw;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(180, 30, 30, 0.2);
+  border-radius: 20px;
+  padding: 52px 56px;
+  margin-bottom: 30vh; /* Creates gaps for stacking */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.6s ease, border-color 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.crusher-card.is-active {
+  border-color: rgba(0, 209, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(0, 209, 255, 0.1), 0 32px 80px rgba(0,0,0,0.6);
+}
+
+.crusher-card.is-past {
+  opacity: 0.6;
+}
+
+/* ── Border Trace Logic ── */
+.card-border-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  padding: 1px;
+  background: conic-gradient(from 0deg, transparent 0%, var(--color-accent) 10%, transparent 20%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.crusher-card.is-active .card-border-glow {
+  animation: borderRotate 3s linear infinite;
+  opacity: 1;
+}
+
+@keyframes borderRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Card Content */
+.card-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 209, 255, 0.08);
+  border: 1px solid rgba(0, 209, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.card-num {
+  font-size: 12px;
+  color: var(--color-accent);
+  letter-spacing: 3px;
+  font-weight: 600;
+  display: block;
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 12px;
+  line-height: 1.25;
+}
+
+.card-text {
+  font-size: 16px;
+  color: var(--color-muted);
+  line-height: 1.75;
+  margin-top: 16px;
+  max-width: 600px;
+}
+
+.problem-fade-out {
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+}
+
+/* ============================================================
+   RESPONSIVE OVERRIDES
+============================================================ */
+@media (max-width: 768px) {
+  .orbit-container { transform: scale(0.6); }
+  .planet-label { display: none; }
+  .orbit-heading { font-size: 32px; }
+  
+  .crusher-card { padding: 32px 24px; }
+  .card-title { font-size: 20px; }
+  .problem-heading { font-size: 32px; }
+}
+
+@media (max-width: 480px) {
+  .orbit-container { transform: scale(0.5); }
+  .ring-3 { width: 280px; height: 280px; }
+  .planet-node { width: 50px; height: 50px; }
+}
